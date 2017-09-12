@@ -1,0 +1,714 @@
+<% provide(:title, "Inventory") %>
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<style>
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+.ribbon-wrapper-green {
+  width: 85px;
+  height: 88px;
+  overflow: hidden;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+}
+
+.ribbon-green {
+  font: bold 15px Sans-Serif;
+  color: #B2B2B2;
+  text-align: center;
+  text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: relative;
+  padding: 7px 0;
+  left: -5px;
+  top: 15px;
+  width: 120px;
+  background-color: #3fb1a3;
+  /*background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45)); 
+  background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45); 
+  background-image:    -moz-linear-gradient(top, #BFDC7A, #8EBF45); 
+  background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45); 
+  background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45); */
+  color: #fff;
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.ribbon-green:before, .ribbon-green:after {
+  content: "";
+  border-top:   3px solid #6e8900;   
+  border-left:  3px solid transparent;
+  border-right: 3px solid transparent;
+  position:absolute;
+  bottom: -3px;
+}
+
+.ribbon-green:before {
+  left: 0;
+}
+.ribbon-green:after {
+  right: 0;
+}​
+/* END OF NEW*/
+
+@-webkit-keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+	40% {
+    -webkit-transform: translateX(-30px);
+    transform: translateX(-30px);
+  }
+	60% {
+    -webkit-transform: translateX(-15px);
+    transform: translateX(-15px);
+  }
+}
+
+@-moz-keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {
+    transform: translateX(0);
+  }
+	40% {
+    transform: translateX(-30px);
+  }
+	60% {
+    transform: translateX(-15px);
+  }
+}
+
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+  }
+	40% {
+    -ms-transform: translateX(-30px);
+    transform: translateX(-30px);
+  }
+	60% {
+    -ms-transform: translateX(-15px);
+    transform: translateX(-15px);
+  }
+}
+
+.arrow {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  margin-top:-20px;
+  width: 40px;
+  height: 40px;
+  background-image: url(data:image/png;base64,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);
+  background-size: contain;
+  color: #3fb1a3;
+}
+
+.bounce {
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+/* END OF SECOND LEVEL OF NEW*/
+
+/* entire container, keeps perspective */
+.flip-container {
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -o-perspective: 1000;
+  perspective: 1000;
+  position: relative;
+
+    /*border: 1px solid #ccc;*/
+    float:right;
+
+}
+
+    .flip-container:hover .flipper,  
+  .flip-container.hover .flipper {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+.flip-container, .front, .back {
+    width: 265px;
+    height: 145px;
+}
+
+.flipper {
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+
+    -moz-transition: 0.6s;
+    -moz-transform-style: preserve-3d;
+  
+  -o-transition: 0.6s;
+    -o-transform-style: preserve-3d;
+
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    position: relative;
+}
+
+.front, .back {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+  	-o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display:inline-block;
+    float:right;
+    width:264;
+}
+
+.front {
+    
+   
+}
+
+.back {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    display:inline-block;
+    float:right;
+    background: #f3f6fa;
+    box-shadow: 0 0 .4em .2em #ccc;
+    /*background: url('/../../assets/icon-touch.png');*/
+}
+
+.front .name {
+    font-size: 1.5em;
+    display: inline-block;
+    background: rgba(63, 177, 163, 1);
+    opacity: .6;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    top: 12px;
+    left: 5px;
+    position: absolute;
+    text-shadow: 0.1em 0.1em 0.05em #333;
+    -webkit-transform: rotate(-20deg);
+    -moz-transform: rotate(-20deg);
+  	-o-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+}
+
+/*.back-logo {
+    position: absolute;
+    top: 40px;
+    left: 90px;
+    width: 160px;
+    height: 117px;
+    background: url(http://davidwalsh.name/demo/logo.png) 0 0 no-repeat;
+}
+
+.back-title {
+    font-weight: bold;
+    color: #00304a;
+    position: absolute;
+    top: 180px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    text-shadow: 0.1em 0.1em 0.05em #acd7e5;
+    font-family: Courier;
+    font-size: 2em;
+}*/
+
+.back p {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    padding: 0 20px;
+  
+  line-height: 2em;
+}
+.inventoryElement {
+	box-shadow: 0 5px .2em .1em #ccc;	 
+	width: 265px;
+	background-size: cover; 
+	background-position:center; 
+	display:inline-block; 
+	float:right;
+}
+.inventoryh3 {
+	position:absolute;
+	top:0px;
+	width:100%;
+	
+	text-shadow: -1px 1px 0px black,
+                 -2px 2px 0px #646464,
+                 -3px 3px 0px #fff;}
+/*.carimg {
+	width: 265px;
+	display: inline-block;
+	vertical-align: top;
+	float: right;
+	box-shadow: 0 0 .4em .4em #ccc; }
+.inventoryElement {
+	box-shadow: 0 0 .4em .4em #ccc;	 
+	width: 265px;
+	opacity: 0.4;
+	background-size: cover; 
+	background-position:center; 
+	display:inline-block; 
+	float:right;
+}
+.inventoryh3 {
+	position:absolute;
+	top:0px;
+	left: 140px;
+	width:100%;
+	padding-left: 40px;
+	text-shadow: -1px 1px 0px black,
+                 -2px 2px 0px #646464,
+                 -3px 3px 0px #fff;
+}
+.inventoryh3 a {
+	font-color:#b2b2b2;
+	text-shadow: -1px 1px 0px black,
+                 -2px 2px 0px #646464,
+                 -3px 3px 0px #fff;
+
+}
+.servicewrapper {
+    max-width:265px;
+    max-height:150px;
+    display: inline-block;
+    float:right;
+    position: relative;
+    
+}
+.ArtistPic {
+	
+    filter: alpha(opacity=40); comm For IE8 and earlier ented
+    max-height: 100%;
+    max-width:100%;
+    width: auto;
+    
+}
+.inventoryElement:hover {
+	opacity: .650;
+    filter: alpha(opacity=100); comm For IE8 and earlier ented
+}*/
+
+/*START*/
+
+/*END*/
+
+</style>
+
+	<head>
+		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/javascripts/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/main.css" />
+		
+		<link rel="stylesheet" href="../../assets/animated.min.css">
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/stylesheets/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/stylesheets/ie9.css" /><![endif]-->
+	</head>
+	<body class="left-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					</span><h1 id="logo"><a href="/">Triple Crown <span class="icon fa-trophy"><span> Car Dealership</span></a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="/welcome">Welcome</a></li>
+							<li class="submenu">
+								<a href="#">Inventory</a>
+								<ul>
+									<li><a href="/inventory">Current Stock</a></li>
+									<li><a href="/build">Design Your Own</a></li>
+									<li><a href="/lineup">View the Lineup</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="/services">Services</a>
+								<ul>
+									<li><a href="/schedule-test">Test Drives</a></li>
+									<li><a href="/schedule-sales">Sales Appointments</a></li>
+									<li><a href="/services">View All</a></li>
+								</ul>
+							</li>
+							<li><a href="/contact-us">Contact Us</a>
+							<% if logged_in? %>
+							<li class="submenu">
+                  				<a href="#">My Account</a>
+                  				<ul>
+                   	 				<li><a href="/users">All Users</a></li>
+					                <li><%= link_to "Profile", current_user %></li>
+					                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+					                <li class="divider"></li>
+					                <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+					            </ul>
+					        </li>
+					        <% else %>
+								<li><a href="/sign-up" class="button special">Sign Up</a></li>
+								<li><a href="/login" class="button special">Log In</a></li>
+							<% end %>
+						</ul>
+					</nav>
+				</header>
+			<!-- Main -->
+				<article id="main">
+
+					<header class="special container">
+						<span class="icon fa-car"></span>
+						<h2>Triple Crown <strong>Inventory</strong></h2>
+					</header>
+
+					<!-- One -->
+						<section class="wrapper style4 container">
+
+							<div class="row 150%" >
+								<div class="4u 12u(narrower)">
+									<!-- Sidebar -->
+									<div class="sidebar">
+										<section>
+											<header>
+												<h3>Filter Your <strong>Results</strong></h3>
+												<!-- Start -->
+												<div class="filtering-wrap">             
+							                		<h4>Status</h4>
+							                		<form>
+									                    <label style="font-size:12px;"><input type="radio" name="fl-1" value="check1" id="check1" /> New</label><br>
+									                    <label style="font-size:12px;"><input type="radio" name="fl-1" value="check2" id="check2" /> Used</label><br> 
+									                    <label style="font-size:12px;"><input type="radio" name="fl-1" value="check3" id="check3" /> Certified</label><br><p></p>
+							                		</form>
+							                		<h4>Make</h4>
+									                <form>
+									                	<label style="font-size:12px;"><input type="radio" onclick="javascript:yesnoCheck();" name="fl-3" value="check12" id="check12" /> Acura</label><br>
+									                	<label style="font-size:12px;"><input type="radio" onclick="javascript:yesnoCheck();" name="fl-3" value="check13" id="check13" /> Honda</label><br>
+									                    <label style="font-size:12px;"><input type="radio" onclick="javascript:yesnoCheck();" name="fl-3" value="check14" id="check14" /> Hyundai</label><br><br/>
+									                                    
+									                </form> 
+									               
+									                <!-- THIS IS THE ASSET PAGE DO NOT MIX UP-->
+									                <!-- START-->
+									                <div id="model">	
+								                	<form>
+									                	<div id="ifHyundai" style="display:none">
+									                		<h4>Model</h4>
+									                		<ul>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check218" id="check218" /> Accent</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check219" id="check219" /> Azera</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check104" id="check104" /> Elantra</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check109" id="check109" /> Elantra GT</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check222" id="check222" /> Equus</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check223" id="check223" /> Genesis Coupe</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check110" id="check110" /> Genesis Sedan</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check225" id="check225" /> Santa Fe</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check111" id="check111" /> Santa Fe Sport</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check277" id="check277" /> Sonata</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check112" id="check112" /> Sonata Hybrid</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check276" id="check276" /> Tucson</label><br>
+									                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check230" id="check230" /> Veloster</label><br>
+													    </div>
+													    <div id="ifHonda" style="display:none">
+													    	<h4>Model</h4>
+													    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check215" id="check215" /> Accord Coupe</label><br>
+													    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check113" id="check113" /> Accord Hybrid</label><br>
+													    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check114" id="check114" /> Accord Plug-In</label><br>
+													    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check115" id="check115" /> Accord Sedan</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check216" id="check216" /> Civic Coupe</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check116" id="check116" /> Civic HF</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check117" id="check117" /> Civic Hybrid</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check118" id="check118" /> Civic Natural Gas</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check119" id="check119" /> Civic Si Coupe</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check120" id="check120" /> Civic Si Sedan</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check217" id="check217" /> CR-V</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check224" id="check224" /> CR-Z</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check226" id="check226" /> Crosstour</label><br>
+													    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check227" id="check227" /> Fit</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check228" id="check228" /> Insight</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check229" id="check229" /> Odyssey</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check220" id="check220" /> Pilot</label><br><br>
+									                    </div>
+									                    <div id="ifAcura" style="display:none">
+									                    	<h4>Model</h4>
+													    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check221" id="check21" /> ILX</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check105" id="check105" /> MDX</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check106" id="check106" /> RDX</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check108" id="check108" /> RLX</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check107" id="check107" /> TLX</label><br><br>
+													    </div>
+													</form>
+												</div> 
+												<h4>Type</h4>
+									                <form>
+									                	<label style="font-size:12px;"><input type="radio" name="fl-2" value="check4" id="check4" /> Sedan</label><br>
+									                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check5" id="check5" /> Coupe</label><br>
+									                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check6" id="check6" /> Convertible</label><br>
+									                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check7" id="check7" /> SUV</label><br><label style="font-size:12px;"><input type="radio" name="fl-2" value="check8" id="check8" /> Van</label><br>                  
+									                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check9" id="check9" /> Truck</label><br>
+									                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check10" id="check10" /> Wagon</label><br>
+									                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check11" id="check11" /> Hatchback</label><br><p></p>
+									                </form>
+									                <!-- END-->
+									                <!--<form>
+									                	  <div id="ifAcura" style="display:none">
+									                	  	<h4>Color</h4>
+													    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check18" id="check18" /> Bellanova White Pearl</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check19" id="check19" /> Black Copper Pearl</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check21" id="check21" /> Dark Cherry Pearl</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check22" id="check22" /> Fathom Blue Pearl</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check23" id="check23" /> Graphite Luster Metallic</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check25" id="check25" /> Lunar Silver Metallic</label><br>
+													        <label style="font-size:12px;"><input type="radio" name="fl-4" value="check17" id="check17" /> Basque Red Pearl II</label><br>
+													        <label style="font-size:12px;"><input type="radio" name="fl-4" value="check20" id="check20" /> Crystal Black Pearl</label><br>
+													        <label style="font-size:12px;"><input type="radio" name="fl-4" value="check30" id="check30" /> White Diamond Pearl</label><br>
+													    </div>
+													    <div id="ifHonda" style="display:none">
+													    	<h4>Color</h4>
+													    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check15" id="check15" /> Cooper Sunset Pearl</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check16" id="check16" /> Obsidian Blue Pearl</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check17" id="check17" /> Basque Red Pearl II</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check24" id="check24" /> Kona Coffee Metallic</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check26" id="check26" /> Modern Steel Metallic</label><br>
+													    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check27" id="check27" /> Mountain Air Metallic</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check28" id="check28" /> Alabaster Silver Metallic</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check29" id="check29" /> Urban Titanium Metallic</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check20" id="check20" /> Crystal Black Pearl</label><br>
+													    </div>
+													    <div id="ifHyundai" style="display:none">
+													    	<h4>Color</h4>
+													    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check31" id="check31" /> Becketts Black</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check32" id="check32" /> Black Diamond</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check33" id="check33" /> Black Noir Pearl</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check34" id="check34" /> Blue Sky Metallic</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check35" id="check35" /> Boston Red Metallic</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check36" id="check36" /> Casablanca White</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check37" id="check37" /> Caspian Black</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check38" id="check38" /> Century White</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check39" id="check39" /> Circuit Silver</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check40" id="check40" /> Desert Bronze</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check41" id="check41" /> Diamond White Pearl</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check42" id="check42" /> Eclipse Black</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check43" id="check43" /> Elite White Pearl</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check44" id="check44" /> Empire State Gray</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check45" id="check45" /> Frost White Pearl</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check46" id="check46" /> Becketts Black</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check47" id="check47" /> Garnet Red Mica</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check48" id="check48" /> Graphite Gray Metallic</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check49" id="check49" /> Ibiza Blue</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check50" id="check50" /> Ironman Silver Metallic</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check51" id="check51" /> Marlin Blue</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check52" id="check52" /> Mineral Gray</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check53" id="check53" /> Misty Beige Metallic</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check54" id="check54" /> Monaco White</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check55" id="check55" /> Night Sky Pearl</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check56" id="check56" /> Pacific Blue Pearl</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check57" id="check57" /> Pamplona Red</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check58" id="check58" /> Pearl White</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check59" id="check59" /> Pewter Gray Metallic</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check60" id="check60" /> Phantom Black</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check61" id="check61" /> Porcelain White Pearl</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check62" id="check62" /> Santiago Silver</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check63" id="check63" /> Serrano Red</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check64" id="check64" /> Shadow Gray</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check65" id="check65" /> Shale Gray Metallic</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check66" id="check66" /> Shimmering Silver</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check67" id="check67" /> Sparkling Silver</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check68" id="check68" /> Symphony Silver</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check69" id="check69" /> Triathlon Gray Metallic</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check70" id="check70" /> Twilight Black</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check71" id="check71" /> Ultra Black Pearl</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check72" id="check72" /> Urban Sunset</label><br>
+									                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check73" id="check73" /> Venetian Red</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check74" id="check74" /> Windy Sea Blue</label><br>
+															<label style="font-size:12px;"><input type="radio" name="fl-4" value="check75" id="check75" /> Winter White Solid</label><br>
+													    </div>
+									                	<p></p>
+									                </form>  -->
+									                <form>
+									                	<label for="fader">Price Maximum</label>
+
+														<input type="range" min="10" max="75" value="75" id="fader" step="1" onclick="outputUpdate(value)">
+														<output for="fader" id="volume">$75,000</output>
+														<script>
+														//function outputUpdate(vol) {
+														//document.querySelector('#volume').value = "$" + vol+",000";
+														//}
+														</script>
+													</form>
+													<br><br>
+									                 <a href="/inventory">Clear All</a>
+									            </div>
+												<!-- End -->
+											</header>
+
+												<!--This is the "view more" button that I don't need right now<ul class="buttons">
+													<li><a href="#" class="button small">View All</a></li>
+												</ul>-->
+										
+										</section>
+
+										<section><!-- Second sidebar sections -->
+											<header>
+												<!-- THIS IS ANOTHER SIDEBAR SECTION IN CASE OF EMERGENCY -->
+												<h3></h3>
+											</header>
+											     
+											
+										</section>
+									</div>
+								</div>
+								<div class="8u 12u(narrower) important(narrower)">
+									<!-- Content -->
+									<div class="content">
+										<section>
+											<!--<a href="#" class="image featured"><img src="assets/pic02.jpg" alt="" /></a>-->
+											<header>
+												<h3></h3>
+											</header>
+											<div class="results">
+												<% @assets.each do |u| %>
+													<% different = u.E_All__c%>
+													<script>var volu = document.getElementById("fader").value;
+													volu = volu *1000;
+													</script>
+													<div class="result" data-id="<%="#{u.Id}"%>" data-category="<%="#{different}"%>">
+														<% if u.Status != "Sold"%>
+															<hr style="background:#B2B2B2; border:0; height:1px" />
+															<div style="display:inline-block;">
+												  				<%=u.Name%><br/>
+												  				Car Type: <%= u.Car_Type__c %><br/>
+												  				<%if not(u.Used__c)%>
+												  					Color: <%= u.Color__c %><br />
+												  				<%else%>
+												  					Color: <%= u.Used_Color__c %><br />
+												  				<%end%>
+												  				MSRP: $<span class="unitprice"><%= u.Price%>0</span><br/>
+												  				Highway MPG: <%= u.MPG_Highway__c %><br />
+												  				
+												  					
+												  			</div>
+												  			<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+																<div class="flipper">
+																    <div class="front" style="background-image: url(<%=u.Image__c%>);  z-index: 2; display:inline-block; float:right; box-shadow: 0 0 .4em .2em #ccc; background-size: cover; background-position:center; opacity:0.8;">
+																    	<%if not(u.Used__c)%> 
+																    		<div class="ribbon-wrapper-green">
+																    			<div class="ribbon-green">NEW</div>
+																    		</div>
+																    	
+																    	<%else%>
+																    		<!--<span class="name">USED</span>-->
+																    		<div class="ribbon-wrapper-green">
+																    			<div class="ribbon-green">Used</div>
+																    		</div>
+																   	 	<%end%>  
+																    </div>
+																    <div class="back">
+																    	
+																      		<div class="back-logo"></div>
+																      		<div class="back-title"></div>
+																      	<p style="font-size:34px; position: absolute; left:0px; top:35px"><%= link_to "Check it out", u %><div class="arrow animated pulse infinite" style="position:absolute; right: 20px; top: 65px"></div></p>
+																    </div>
+																</div>
+															</div>
+																			<!--<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+																<div class="flipper">
+																	<div class="front">
+																		<div class="inventoryElement" style="background-image:url(<%=u.Image__c%>); ">
+																		</div>
+																	</div>
+																	<div class="back">
+																		<h3 id="inventoryh3" style="text-align:center; "></h3>
+																	</div>
+																</div>
+															</div>-->
+												  			
+												  				
+												  					<h2 id="inventoryh3"><strong></strong>
+												  						<!--<span class="icon fa-arrow-right"></span>-->
+												  					</h2>
+												  				
+												  			
+												  			<script>
+																$(window).load(function() {
+																	var height = 0.55 * $(".front").width();
+																	$(".front").height(height);
+																});
+															</script>
+
+												  		<%end%>
+												  	</div>
+												<% end %>
+												<hr style="background:#B2B2B2; border:0; height:1px" />
+											</div>	
+										</section>
+									</div>
+								</div>
+							</div>
+						</section>
+
+					<!-- Two -->
+						
+
+				</article>
+
+			<!-- Footer -->
+				<footer id="footer">
+
+					<ul class="icons">
+						<li><a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
+						<li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+					</ul>
+
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			
+			<!-- Define the checkboxes dependencies
+				//var dependencies = {
+				    //"#check12": ["#check17", "#check18", "#check19", "#check20", "#check21", "check22", "#check23", "#check25", "#check30"], 
+				    //"#check13": ["#check15", "#check16", "#check17", "#check24", "#check26","#check27", "#check28", "#check29"], 
+				    //"#check14": ["#check31", "#check32", "#check33","#check34","#check35", "#check36", "#check37", "#check38", "#check39", "#check40", "#check41", "#check42", "#check43", "#check44", "#check45", "#check46", "#check47", "#check48", "#check49", "#check50", "#check51", "#check52", "#check53", "#check54", "#check55", "#check56", "#check57", "#check58", "#check59", "#check60", "#check61", "#check62", "#check63", "#check64", "#check65", "#check66", "#check67", "#check68", "#check69", "#check70", "#check71", "#check72", "#check73", "#check74", "#check75"] 
+				//};-->
+
+
+			
+				
+			<script src="../../assets/jquery.min.js"></script>
+			<script src="../../assets/jquery.dropotron.min.js"></script>
+			<script src="../../assets/jquery.scrolly.min.js"></script>
+			<script src="../../assets/jquery.scrollgress.min.js"></script>
+			<script src="../../assets/skel.min.js"></script>
+			<script src="../../assets/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/main.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,316 @@
+<% provide(:title, "The Lineup") %>
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<style>
+	@import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
+	.carimg {
+		max-heigh:195px;
+		width: 295px;
+		display: inline-block;
+	; 
+		vertical-align: top;
+		box-shadow: 0 0 .4em .4em #ccc;
+		
+		 }
+		 .carimg2 {
+		max-width: 295px;
+		vertical-align: top;
+		box-shadow: 0 0 .4em .4em #ccc;
+		opacity: 0.4;
+		 }
+		 .carimg2:hover {
+		 	opacity: 0.650;
+		 	filter: alpha(opacity=100);
+		 }
+/*
+	.servicewrapper {
+    	max-width:520px;
+    	max-height:460px;
+    	position:relative;
+	}
+	#serviceh3 {
+		position: absolute; 
+  		top: 90px; 
+  		left: 0; 
+  		width: 100%;
+	}
+	.ArtistPic {
+		opacity: 0.3;
+    	filter: alpha(opacity=40); /* For IE8 and earlier 
+    	max-height: 100%;
+    	max-width:100%;
+    	width: auto;
+    }
+	.ArtistPic:hover {
+		opacity: .650;
+    	filter: alpha(opacity=100); /* For IE8 and earlier 
+	}*/
+
+</style>
+
+	<head>
+		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/javascripts/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/stylesheets/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/stylesheets/ie9.css" /><![endif]-->
+	</head>
+	<body class="left-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					</span><h1 id="logo"><a href="/">Triple Crown <span class="icon fa-trophy"><span> Car Dealership</span></a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="/welcome">Welcome</a></li>
+							<li class="submenu">
+								<a href="#">Inventory</a>
+								<ul>
+									<li><a href="/inventory">Current Stock</a></li>
+									<li><a href="/build">Design Your Own</a></li>
+									<li><a href="/lineup">View the Lineup</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="/services">Services</a>
+								<ul>
+									<li><a href="/schedule-test">Test Drives</a></li>
+									<li><a href="/schedule-sales">Sales Appointments</a></li>
+									<li><a href="/services">View All</a></li>
+								</ul>
+							</li>
+							<li><a href="/contact-us">Contact Us</a>
+							<% if logged_in? %>
+							<li class="submenu">
+                  				<a href="#">My Account</a>
+                  				<ul>
+                   	 				<li><a href="/users">All Users</a></li>
+					                <li><%= link_to "Profile", current_user %></li>
+					                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+					                <li class="divider"></li>
+					                <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+					            </ul>
+					        </li>
+					        <% else %>
+								<li><a href="/sign-up" class="button special">Sign Up</a></li>
+								<li><a href="/login" class="button special">Log In</a></li>
+							<% end %>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<article id="main">
+					<header class="special container">
+						<span class="icon fa-bars"></span>
+						<h2>2015 Hyundai <strong>Lineup</strong></h2>
+						<!--<p>Where that in the center faces the nameless horrors alone.</p>-->
+					</header>
+					<section class="wrapper style1 container special">
+						<header>
+							<section>
+								<div class="row">
+									<div class="4u 12u(narrower)">
+										<a href="/schedule-test"> <input type="submit" class="special" value="Acura"></input></a><p></p>
+										<%products = Array.new%>  <!--new hash to check if there are duplicates-->
+										<ul>
+											<% @pricebookentrys.each do |go|%> <!-- For ever PricebookEntry -->
+												<%num = 0%> <!-- Initialize number to keep track of where we are in the hash-->
+												
+												 <!--Assume innocence -->
+												<%if go.Name.include? 'Acura' %> <!-- If hyundai -->
+													<%if go.Name.include? '2015' %> <!--  If 2015-->
+														
+														<%flag = true%>
+														<%products.each do |hell|%> 
+															
+															<%if go.Name == hell%>
+																<%flag = false%>
+																
+															<%end%>
+															<!-- For every 2015 hyundai -->
+														<%end%>
+														<%if flag != false%>
+															<p style="display:inline-block; "> <%=go.Name%></p><br>
+															<img class="carimg" src="<%="#{go.Picture__c}"%>"/><br><br>
+															<% products.push("#{go.Name}") %> <!-- Give the array all product names-->
+														<%end%>
+													<%end%>
+												<%end%>
+											<%end%>
+										</ul>
+										
+									</div>
+									<div class="4u 12u(narrower)">
+
+										<a href="/schedule-sales"> <input type="submit" class="special" value="Honda"></input></a><p></p>
+										<%products = Array.new%>  <!--new hash to check if there are duplicates-->
+										<ul>
+											<% @pricebookentrys.each do |go|%> <!-- For ever PricebookEntry -->
+												<%num = 0%> <!-- Initialize number to keep track of where we are in the hash-->
+												
+												 <!--Assume innocence -->
+												<%if go.Name.include? 'Honda' %> <!-- If hyundai -->
+													<%if go.Name.include? '2015' %> <!--  If 2015-->
+														
+														<%flag = true%>
+														<%products.each do |hell|%> 
+															
+															<%if go.Name == hell%>
+																<%flag = false%>
+																
+															<%end%>
+															<!-- For every 2015 hyundai -->
+														<%end%>
+														<%if flag != false%>
+															<p style="display:inline-block; "> <%=go.Name%></p><br>
+															<img class="carimg" src="<%="#{go.Picture__c}"%>"/><br><br>
+															<% products.push("#{go.Name}") %> <!-- Give the array all product names-->
+														<%end%>
+													<%end%>
+												<%end%>
+											<%end%>
+										</ul>
+									</div>
+									<div class="4u 12u(narrower)">
+										<a href="/services"> <input type="submit" class="special" value="Hyundai"></input></a><p></p>
+										<%products = Array.new%>  <!--new hash to check if there are duplicates-->
+										<ul>
+											<% @pricebookentrys.each do |go|%> <!-- For ever PricebookEntry -->
+												<%num = 0%> <!-- Initialize number to keep track of where we are in the hash-->
+												
+												 <!--Assume innocence -->
+												<%if go.Name.include? 'Hyundai' %> <!-- If hyundai -->
+													<%if go.Name.include? '2015' %> <!--  If 2015-->
+														
+														<%flag = true%>
+														<%products.each do |hell|%> 
+															
+															<%if go.Name == hell%>
+																<%flag = false%>
+																
+															<%end%>
+															<!-- For every 2015 hyundai -->
+														<%end%>
+														<%if flag != false%>
+															<p style="display:inline-block; "> <%=go.Name%></p><br>
+															<img class="carimg" src="<%="#{go.Picture__c}"%>"/><br><br>
+															<% products.push("#{go.Name}") %> <!-- Give the array all product names-->
+														<%end%>
+													<%end%>
+												<%end%>
+											<%end%>
+										</ul>
+									</div>	
+								</div>
+							</section>
+						</header>
+					</section>		
+
+					<!-- Two -->
+						<!--<section class="wrapper style1 container special">
+							<div class="row">
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<header>
+											<h3>This is Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">View All Inventory</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<header>
+											<h3>Also Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<header>
+											<h3>Probably Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+							</div>
+						</section>-->
+
+				</article>
+
+			<!-- Footer -->
+				<footer id="footer">
+
+					<ul class="icons">
+						<li><a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
+						<li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+					</ul>
+
+					<ul class="copyright">
+						<li>&copy; Triple Crown Car Dealership</li><li>Design: <a href="http://html5up.net">Erin Combs</a></li>
+					</ul>
+
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			
+			<!-- Define the checkboxes dependencies
+				//var dependencies = {
+				    //"#check12": ["#check17", "#check18", "#check19", "#check20", "#check21", "check22", "#check23", "#check25", "#check30"], 
+				    //"#check13": ["#check15", "#check16", "#check17", "#check24", "#check26","#check27", "#check28", "#check29"], 
+				    //"#check14": ["#check31", "#check32", "#check33","#check34","#check35", "#check36", "#check37", "#check38", "#check39", "#check40", "#check41", "#check42", "#check43", "#check44", "#check45", "#check46", "#check47", "#check48", "#check49", "#check50", "#check51", "#check52", "#check53", "#check54", "#check55", "#check56", "#check57", "#check58", "#check59", "#check60", "#check61", "#check62", "#check63", "#check64", "#check65", "#check66", "#check67", "#check68", "#check69", "#check70", "#check71", "#check72", "#check73", "#check74", "#check75"] 
+				//};-->
+
+
+
+				
+
+				
+				
+			<script src="../../assets/jquery.min.js"></script>
+			<script src="../../assets/jquery.dropotron.min.js"></script>
+			<script src="../../assets/jquery.scrolly.min.js"></script>
+			<script src="../../assets/jquery.scrollgress.min.js"></script>
+			<script src="../../assets/skel.min.js"></script>
+			<script src="../../assets/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/main.js"></script>
+
+	</body>
+</html>

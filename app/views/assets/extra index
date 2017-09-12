@@ -1,0 +1,12 @@
+else #if new 
+																	
+																	if att[1].include? "USED" # if used
+																	end
+																	result1 += "check1"
+																	if att[1].include? "2014"
+																		result1 += "check21"
+																	elsif att[1].include? "2015"
+																		result1 += "check22"
+																	elsif att[1].include? "2016"
+																		result1 += "check23"
+																	end

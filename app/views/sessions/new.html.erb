@@ -1,0 +1,221 @@
+<% provide(:title, "Log in") %>
+
+<!DOCTYPE HTML>
+<!--
+  Twenty by HTML5 UP
+  html5up.net | @n33co
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+  </head>
+  <body class="no-sidebar">
+    <div id="page-wrapper">
+
+      <!-- Header -->
+        <header id="header">
+          </span><h1 id="logo"><a href="/welcome">Triple Crown <span class="icon fa-trophy"><span> Car Dealership</span></a></h1>
+          <nav id="nav">
+            <ul>
+              <li class="current"><a href="/welcome">Welcome</a></li>
+              <li class="submenu">
+                <a href="/inventory">Inventory</a>
+                <ul>
+                  <!--<li><a href="buick-results.html">Buick</a></li>-->
+                  <li class="submenu">
+                    <a href="/inventory">Buick</a>
+                    <ul>
+                      <li><a href="#">2015 Buick Enclave</a></li>
+                      <li><a href="#">2015 Buick Encore</a></li>
+                      <li><a href="#">2015 Buick LaCrosse</a></li>
+                      <li><a href="#">2015 Buick Regal</a></li>
+                      <li><a href="#">2015 Buick Verano</a></li>
+                      <li><a href="#">View All Buick Models</a></li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="/inventory">Cadillac</a>
+                    <ul>
+                      <li><a href="#">2015 Cadillac ATS Sedan</a></li>
+                      <li><a href="#">2015 Cadillac ELR</a></li>
+                      <li><a href="#">2015 Cadillac XTS</a></li>
+                      <li><a href="#">2015 Cadillac CTS Sedan</a></li>
+                      <li><a href="#">2015 Cadillac Escalade</a></li>
+                      <li><a href="#">View All Cadillac Models</a></li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="/inventory">Chevrolet</a>
+                    <ul>
+                      <li><a href="#">2015 Chevrolet Camaro</a></li>
+                      <li><a href="#">2015 Chevrolet Cruze</a></li>
+                      <li><a href="#">2015 Chevrolet Tahoe</a></li>
+                      <li><a href="#">2015 Chevrolet Cruze</a></li>
+                      <li><a href="#">2015 Chevrolet Volt</a></li>
+                      <li><a href="#">View All Chevrolet Models</a></li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="/inventory">GMC</a>
+                    <ul>
+                      <li><a href="#">2015 GMC Sierra</a></li>
+                      <li><a href="#">2015 GMC Yukon</a></li>
+                      <li><a href="#">2015 GMC Terrain</a></li>
+                      <li><a href="#">2015 GMC Acadia</a></li>
+                      <li><a href="#">2015 GMC Canyon</a></li>
+                      <li><a href="#">View All GMC Models</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a href="/services">Services</a>
+                <ul>
+                  <li><a href="/schedule-test">Schedule A Test Drive</a></li>
+                  <li><a href="/schedule-sales">Schedule A Sales Appointment</a></li>
+                  <li><a href="no-sidebar.html">View Services Available</a></li>
+                  <!--<li><a href="contact.html">Contact</a></li>-->
+                </ul>
+              </li>
+              <li><a href="/contact-us">Contact Us</a>
+              <li><a href="/sign-up" class="button special">Sign Up</a></li>
+              <li><a href="/login" class="button special">Log In</a></li>
+            </ul>
+          </nav>
+        </header>
+
+      <!-- Main -->
+        <article id="main">
+
+          <header class="special container">
+            <span class="icon fa-mobile"></span>
+            <h2>Triple Crown<strong> Login</strong></h2>
+            <!--<p>Where that in the center faces the nameless horrors alone.</p>-->
+          </header>
+
+          <!-- One -->
+            <section class="wrapper style4 container">
+
+              <!-- Content -->
+                <div class="content">
+                  <h1>Log in</h1>
+
+                  <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                      <%= form_for(:session, url: login_path) do |f| %>
+
+                        <%= f.label :email %>
+                        <%= f.email_field :email, class: 'form-control' %>
+                        <br />
+
+                        <%= f.label :password %>
+                        <%= f.password_field :password, class: 'form-control' %>
+                        <br />
+                        <%= f.label :remember_me, class: "checkbox inline" do %>
+                        <%= f.check_box :remember_me %>
+                        <span>Remember me on this computer</span>
+                      <% end %>
+                      <p></p>
+
+                        <%= f.submit "Log in", class: "btn btn-primary" %>
+                        <br /><br />
+                      <% end %>
+
+                      <p>New user? <%= link_to "Sign up now!", sign_up_path %></p>
+                    </div>
+                  </div>
+                </div>
+
+            </section>
+
+          <!-- Two -->
+            <section class="wrapper style1 container special">
+              <div class="row">
+                <div class="4u 12u(narrower)">
+
+                  <section>
+                    <header>
+                      <h3>This is Something</h3>
+                    </header>
+                    <p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+                    <footer>
+                      <ul class="buttons">
+                        <li><a href="#" class="button small">Learn More</a></li>
+                      </ul>
+                    </footer>
+                  </section>
+
+                </div>
+                <div class="4u 12u(narrower)">
+
+                  <section>
+                    <header>
+                      <h3>Also Something</h3>
+                    </header>
+                    <p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+                    <footer>
+                      <ul class="buttons">
+                        <li><a href="#" class="button small">Learn More</a></li>
+                      </ul>
+                    </footer>
+                  </section>
+
+                </div>
+                <div class="4u 12u(narrower)">
+
+                  <section>
+                    <header>
+                      <h3>Probably Something</h3>
+                    </header>
+                    <p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+                    <footer>
+                      <ul class="buttons">
+                        <li><a href="#" class="button small">Learn More</a></li>
+                      </ul>
+                    </footer>
+                  </section>
+
+                </div>
+              </div>
+            </section>
+
+        </article>
+
+      <!-- Footer -->
+        <footer id="footer">
+
+          <ul class="icons">
+            <li><a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
+            <li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
+            <li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+          </ul>
+
+          <ul class="copyright">
+            <li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+          </ul>
+
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+      <script src="assets/jquery.min.js"></script>
+      <script src="assets/jquery.dropotron.min.js"></script>
+      <script src="assets/jquery.scrolly.min.js"></script>
+      <script src="assets/jquery.scrollgress.min.js"></script>
+      <script src="assets/skel.min.js"></script>
+      <script src="assets/util.js"></script>
+      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+      <script src="assets/main.js"></script>
+
+  </body>
+</html>

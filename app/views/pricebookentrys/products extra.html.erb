@@ -1,0 +1,31 @@
+<% @pricebookentrys.each do |product|%>
+												<% different = product.F_All__c %>
+												<% products[product.Id] = product.UnitPrice %>
+												<div class="result" id="<%="#{product.Id}"%>" data-category="<%="#{different}"%>" >
+													<% if product.Picture__c != nil && product.F_All__c != "f" && different != nil && product.Name.include?("2016")%>
+														<p style="display:inline-block;">
+															<strong><%=product.Name%></strong><br />
+															<div id="base">Base Price: $<span class="unitprice"><%=product.UnitPrice%></span></br></div>
+															<%iddiv2 = "colorchosen"+product.Id%>
+															<%iddiv3 = "trans"+product.Id%>
+															<%iddiv4 = "PRICE"+product.Id%>
+															<%iddiv5 = "interior"+product.Id%>
+															<div id="<%="#{iddiv2}"%>" style="display:none; padding-bottom:40px;">Color: </div>
+															<div id="<%="#{iddiv3}"%>" style="display:none;">Transmission:  </div>
+														
+															<div id="<%="#{iddiv5}"%>" style="display:none; padding-bottom:40px;">Interior: </div>
+														
+															<div id="<%="#{iddiv4}"%>" style="display:none; padding-bottom:40px;">Updated Price: $
+																<span class="unitprice"><%=product.UnitPrice+2435%>0
+																</span>
+															</div>
+														</p>
+												
+														<% u = product.Picture__c %>
+														<img src="<%="#{u}"%>" class="carimg"/>
+														<% selectvar = product.Id + "Select"%>
+														<input type="submit" class="special" value="Select" id="<%="#{selectvar}"%>" onclick="update(this)"></input>
+														<div id="end"> <hr style="background:#B2B2B2; border:0; height:1px"/></div>
+													<% end %>
+												</div>
+											<% end %>

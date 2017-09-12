@@ -1,0 +1,187 @@
+<% provide(:title, "Contact Us") %>
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					</span><h1 id="logo"><a href="/">Triple Crown <span class="icon fa-trophy"><span> Car Dealership</span></a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="/welcome">Welcome</a></li>
+							<li class="submenu">
+								<a href="#">Inventory</a>
+								<ul>
+									<li><a href="/inventory">Current Stock</a></li>
+									<li><a href="/build">Design Your Own</a></li>
+									<li><a href="/lineup">View the Lineup</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="/services">Services</a>
+								<ul>
+									<li><a href="/schedule-test">Test Drives</a></li>
+									<li><a href="/schedule-sales">Sales Appointments</a></li>
+									<li><a href="/services">View All</a></li>
+								</ul>
+							</li>
+							<li><a href="/contact-us">Contact Us</a>
+							<% if logged_in? %>
+							<li class="submenu">
+                  				<a href="#">My Account</a>
+                  				<ul>
+                   	 				<li><a href="/users">All Users</a></li>
+					                <li><%= link_to "Profile", current_user %></li>
+					                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+					                <li class="divider"></li>
+					                <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+					            </ul>
+					        </li>
+					        <% else %>
+								<li><a href="/sign-up" class="button special">Sign Up</a></li>
+								<li><a href="/login" class="button special">Log In</a></li>
+							<% end %>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<article id="main">
+
+					<header class="special container">
+						<span class="icon fa-mobile"></span>
+						<h2>Triple Crown<strong> Contact Information</strong></h2>
+						<!--<p>Where that in the center faces the nameless horrors alone.</p>-->
+					</header>
+					<section class="wrapper style1 container special">
+						<header>
+							<section>
+								<div class="row">
+									<div class="4u 12u(narrower)">
+										<a href="/schedule-test"> <input type="submit" class="special" value="Schedule A Test Drive"></input></a>
+									</div>
+									<div class="4u 12u(narrower)">
+
+										<a href="/schedule-sales"> <input type="submit" class="special" value="Make A Sales Appointment"></input></a>
+									</div>
+									<div class="4u 12u(narrower)">
+										<a href="/services"> <input type="submit" class="special" value="View Our Other Services"></input></a>
+									</div>	
+								</div>
+							</section>
+						</header>
+					</section>
+					<section class="wrapper style4 container">			
+						<h3>Contact Information</h3>
+						<p>
+							<ul>
+								<li>Location: <br />321 Dealership Drive<br />Allentown, PA<br />18101</li><br />
+								<li>Phone: (123)-555-4321</li><br />
+								<li>Email: Neal.Hobert@TRIFECTA.COM</li>
+							</ul>
+						</p>
+						<a href="#" class="image featured"><img src="assets/showroom2.jpg" alt="" /></a>
+									</section>
+								
+
+						</section>
+
+					<!-- Two -->
+						<!--<section class="wrapper style1 container special">
+							<div class="row">
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<header>
+											<h3>This is Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<header>
+											<h3>Also Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<header>
+											<h3>Probably Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+							</div>
+						</section>-->
+
+				</article>
+
+			<!-- Footer -->
+				<footer id="footer">
+
+					<ul class="icons">
+						<li><a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
+						<li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+					</ul>
+
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/jquery.min.js"></script>
+			<script src="assets/jquery.dropotron.min.js"></script>
+			<script src="assets/jquery.scrolly.min.js"></script>
+			<script src="assets/jquery.scrollgress.min.js"></script>
+			<script src="assets/skel.min.js"></script>
+			<script src="assets/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/main.js"></script>
+
+	</body>
+</html>

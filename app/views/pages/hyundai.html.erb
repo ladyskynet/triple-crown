@@ -1,0 +1,718 @@
+<% provide(:title, "Products") %>
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<style>
+	@import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+
+	.carimg {
+		max-width: 295px;
+		display: inline-block;
+		vertical-align: top;
+		box-shadow: 0 0 .4em .4em #ccc;
+		float: right;
+		 }
+		 .carimg2 {
+		max-width: 295px;
+		vertical-align: top;
+		box-shadow: 0 0 .4em .4em #ccc;
+		opacity: 0.4;
+		 }
+		 .carimg2:hover {
+		 	opacity: 0.650;
+		 	filter: alpha(opacity=100);
+		 }
+/*
+	.servicewrapper {
+    	max-width:520px;
+    	max-height:460px;
+    	position:relative;
+	}
+	#serviceh3 {
+		position: absolute; 
+  		top: 90px; 
+  		left: 0; 
+  		width: 100%;
+	}
+	.ArtistPic {
+		opacity: 0.3;
+    	filter: alpha(opacity=40); /* For IE8 and earlier 
+    	max-height: 100%;
+    	max-width:100%;
+    	width: auto;
+    }
+	.ArtistPic:hover {
+		opacity: .650;
+    	filter: alpha(opacity=100); /* For IE8 and earlier 
+	}*/
+
+</style>
+
+	<head>
+		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/javascripts/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../../assets/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/stylesheets/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/stylesheets/ie9.css" /><![endif]-->
+	</head>
+	<body class="left-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					</span><h1 id="logo"><a href="/">Triple Crown <span class="icon fa-trophy"><span> Car Dealership</span></a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="/welcome">Welcome</a></li>
+							<li class="submenu">
+								<a href="#">Inventory</a>
+								<ul>
+									<li><a href="/inventory">Current Stock</a></li>
+									<li><a href="/build">Design Your Own</a></li>
+									<li><a href="/lineup">View the Lineup</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="/services">Services</a>
+								<ul>
+									<li><a href="/schedule-test">Test Drives</a></li>
+									<li><a href="/schedule-sales">Sales Appointments</a></li>
+									<li><a href="/services">View All</a></li>
+								</ul>
+							</li>
+							<li><a href="/contact-us">Contact Us</a>
+							<% if logged_in? %>
+							<li class="submenu">
+                  				<a href="#">My Account</a>
+                  				<ul>
+                   	 				<li><a href="/users">All Users</a></li>
+					                <li><%= link_to "Profile", current_user %></li>
+					                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+					                <li class="divider"></li>
+					                <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+					            </ul>
+					        </li>
+					        <% else %>
+								<li><a href="/sign-up" class="button special">Sign Up</a></li>
+								<li><a href="/login" class="button special">Log In</a></li>
+							<% end %>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<article id="main">
+
+					<header class="special container">
+						<span class="icon fa-car"></span>
+						<div id="choose"><h2>Choose Your <div id="body1"><strong>Body</strong></div>
+							<div id="color1" style="display:none;"><strong>Color</strong></div><div id="engine" style="display:none;"><strong>Transmission</strong></div></h2></div>
+							<div id="summary"style="display:none;"><h2>Your <strong>Summary</strong></h2></div>
+					</header>
+
+					<!-- One -->
+						<section class="wrapper style4 container">
+
+							<div class="row 150%">
+								<div class="4u 12u(narrower)">
+
+									<!-- Sidebar -->
+										<div class="sidebar">
+											<section>
+												<header>
+													<div id="titlestuff"><h3>Filter Your <strong>Results</strong></h3><br></div>
+													<!-- Start -->
+													<div class="filtering-wrap">
+														<div id="make">            
+								                			<h4>Make</h4>
+										                	<form>
+										                		<label style="font-size:12px;"><input type="radio" onclick="javascript:yesnoCheck();" name="fl-3" value="check12" id="check12" /> Acura</label><br>
+										                		<label style="font-size:12px;"><input type="radio" onclick="javascript:yesnoCheck();" name="fl-3" value="check13" id="check13" /> Honda</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" onclick="javascript:yesnoCheck();" name="fl-3" value="check14" id="check14" /> Hyundai</label><br><br>
+										               		</form> 
+										               	</div>
+										               	<div id="model">	
+										                	<form>
+											                	<div id="ifHyundai" style="display:none">
+											                		<h4>Model</h4>
+											                		<ul>
+											                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check18" id="check18" /> Accent</label><br>
+											                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check19" id="check19" /> Azera</label><br>
+											                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check104" id="check104" /> Elantra</label><br>
+											                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check22" id="check22" /> Equus</label><br>
+											                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check23" id="check23" /> Genesis</label><br>
+											                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check25" id="check25" /> Santa Fe</label><br>
+											                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check77" id="check77" /> Sonata</label><br>
+											                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check76" id="check76" /> Tucson</label><br>
+											                		<label style="font-size:12px;"><input type="radio" name="fl-4" value="check30" id="check30" /> Veloster</label><br>
+															    </div>
+															    <div id="ifHonda" style="display:none">
+															    	<h4>Model</h4>
+															    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check15" id="check15" /> Accord</label><br>
+											                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check16" id="check16" /> Civic</label><br>
+											                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check17" id="check17" /> CR-V</label><br>
+																	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check24" id="check24" /> CR-Z</label><br>
+																	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check26" id="check26" /> Crosstour</label><br>
+															    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check27" id="check27" /> Fit</label><br>
+											                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check28" id="check28" /> Insight</label><br>
+											                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check29" id="check29" /> Odyssey</label><br>
+											                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check20" id="check20" /> Pilot</label><br><br>
+											                    </div>
+											                    <div id="ifAcura" style="display:none">
+											                    	<h4>Model</h4>
+															    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check21" id="check21" /> ILX</label><br>
+											                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check105" id="check105" /> MDX</label><br>
+											                    	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check106" id="check106" /> RDX</label><br>
+																	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check108" id="check108" /> RLX</label><br>
+																	<label style="font-size:12px;"><input type="radio" name="fl-4" value="check107" id="check107" /> TLX</label><br><br>
+															    </div>
+															</form>
+														</div>
+														<div id="type">
+											                <h4>Type</h4>
+											                <form>
+											                	<label style="font-size:12px;"><input type="radio" name="fl-2" value="check4" id="check4" /> Sedan</label><br>
+											                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check5" id="check5" /> Coupe</label><br>
+											                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check6" id="check6" /> Convertible</label><br>
+											                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check7" id="check7" /> SUV</label><br>
+											                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check8" id="check8" /> Van</label><br>                 
+											                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check9" id="check9" /> Truck</label><br>
+											                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check10" id="check10" /> Wagon</label><br>
+											                    <label style="font-size:12px;"><input type="radio" name="fl-2" value="check11" id="check11" /> Hatchback</label><br><p></p>
+											                </form>
+											            </div>
+											            <div id="color">
+											                <form>
+											                	<div id="ifAcura1" style="display:none">
+										                	  	<h4>Color</h4>
+														    	<label style="font-size:12px;"><input type="radio" name="color" value="check31" id="check31" /> Bellanova White Pearl</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check32" id="check32" /> Black Copper Pearl</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check33" id="check33" /> Dark Cherry Pearl</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check34" id="check34" /> Fathom Blue Pearl</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check35" id="check35" /> Graphite Luster Metallic</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check36" id="check36" /> Lunar Silver Metallic</label><br>
+														        <label style="font-size:12px;"><input type="radio" name="color" value="check37" id="check37" /> Basque Red Pearl II</label><br>
+														        <label style="font-size:12px;"><input type="radio" name="color" value="check38" id="check38" /> Crystal Black Pearl</label><br>
+														        <label style="font-size:12px;"><input type="radio" name="color" value="check39" id="check39" /> White Diamond Pearl</label><br><br>
+														        <input type="button" class="special" value="Select" id="selectacura" onclick="update2(this.parentNode.id)"></input>
+														    </div>
+														    <div id="ifHonda1" style="display:none">
+														    	<h4>Color</h4>
+														    	<label style="font-size:12px;"><input type="radio" name="color" value="check40" id="check40" /> Copper Sunset Pearl</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check41" id="check41" /> Obsidian Blue Pearl</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check42" id="check42" /> Basque Red Pearl II</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check43" id="check43" /> Kona Coffee Metallic</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check44" id="check44" /> Modern Steel Metallic</label><br>
+														    	<label style="font-size:12px;"><input type="radio" name="color" value="check45" id="check45" /> Mountain Air Metallic</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check46" id="check46" /> Alabaster Silver Metallic</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check47" id="check47" /> Urban Titanium Metallic</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check48" id="check48" /> Crystal Black Pearl</label><br><br>
+										                    	<input type="button" class="special" value="Select" name="color" id="selecthonda" onclick="update2(this.parentNode.id);"></input>
+														    </div>
+														    <div id="ifHyundai1" style="display:none">
+														    	<h4>Color</h4>
+														    	<label style="font-size:12px;"><input type="radio" name="color" value="check49" id="check49" /> Becketts Black</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check50" id="check50" /> Black Diamond</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check51" id="check51" /> Black Noir Pearl</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check52" id="check52" /> Blue Sky Metallic</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check53" id="check53" /> Boston Red Metallic</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check54" id="check54" /> Casablanca White</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check55" id="check55" /> Caspian Black</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check56" id="check56" /> Century White</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check57" id="check57" /> Circuit Silver</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check58" id="check58" /> Desert Bronze</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check59" id="check59" /> Diamond White Pearl</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check60" id="check60" /> Eclipse Black</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check61" id="check61" /> Elite White Pearl</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check62" id="check62" /> Empire State Gray</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check63" id="check63" /> Frost White Pearl</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check64" id="check64" /> Becketts Black</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check65" id="check65" /> Garnet Red Mica</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check66" id="check66" /> Graphite Gray Metallic</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check67" id="check67" /> Ibiza Blue</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check68" id="check68" /> Ironman Silver Metallic</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check69" id="check69" /> Marlin Blue</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check70" id="check70" /> Mineral Gray</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check71" id="check71" /> Misty Beige Metallic</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check72" id="check72" /> Monaco White</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check73" id="check73" /> Night Sky Pearl</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check74" id="check74" /> Pacific Blue Pearl</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check75" id="check75" /> Pamplona Red</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check78" id="check78" /> Pearl White</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check79" id="check79" /> Pewter Gray Metallic</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check80" id="check80" /> Phantom Black</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check81" id="check81" /> Porcelain White Pearl</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check82" id="check82" /> Santiago Silver</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check83" id="check83" /> Serrano Red</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check84" id="check84" /> Shadow Gray</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check85" id="check85" /> Shale Gray Metallic</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check86" id="check86" /> Shimmering Silver</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check87" id="check87" /> Sparkling Silver</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check88" id="check88" /> Symphony Silver</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check89" id="check89" /> Triathlon Gray Metallic</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check90" id="check90" /> Twilight Black</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check91" id="check91" /> Ultra Black Pearl</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check92" id="check92" /> Urban Sunset</label><br>
+										                    	<label style="font-size:12px;"><input type="radio" name="color" value="check93" id="check93" /> Venetian Red</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check94" id="check94" /> Windy Sea Blue</label><br>
+																<label style="font-size:12px;"><input type="radio" name="color" value="check95" id="check95" /> Winter White Solid</label><br><br>
+																<input type="button" class="special" value="Select" id="selecthyundai" onclick="update2(this.parentNode.id);"></input>
+														        
+														    </div>
+											                	<p></p>
+											                </form>
+											            </div>
+											            <div id="transmission" style="display:none;">
+
+											            	<h4>Transmission</h4>
+											            	<form id="transy">
+											            		<label style="font-size:12px;"><input type="radio" name="transmission" value="check96" id="check96" /> Manual</label><br>
+																<label style="font-size:12px;"><input type="radio" name="transmission" value="check97" id="check97" /> Automatic</label><br><br>
+															</form>
+														</div>
+														<div id="interior" style="display:none;">
+											            	<h4>Interior Design</h4>
+											            	<form >
+											            		<label style="font-size:12px;"><input type="radio" name="interior" value="check98" id="check98" /> Gray Fabric</label><br>
+																<label style="font-size:12px;"><input type="radio" name="interior" value="check99" id="check99" /> Black Fabric</label><br>
+																<label style="font-size:12px;"><input type="radio" name="interior" value="check100" id="check100" /> Beige Fabric</label><br>
+																<label style="font-size:12px;"><input type="radio" name="interior" value="check101" id="check101" /> Touring Gray Leather</label><br>
+																<label style="font-size:12px;"><input type="radio" name="interior" value="check102" id="check102" /> Touring Black Leather</label><br>
+																<label style="font-size:12px;"><input type="radio" name="interior" value="check103" id="check103" /> Touring Beige Leather</label><br><br>
+																<input type="button" class="special" value="Select" id="selectinterior" onclick="update3(this.parentNode.parentNode.id);"></input>
+											            	</form>
+											            </div>
+											            <div id="home" style="display:none;">
+											            	<h3>Navigation <strong>Menu</strong></h3>
+											            	<h4>Get A Quote</h4>
+											            	<p>
+											            		<a href="/schedule-sales">
+											            			<img class="carimg2" src="../../assets/salesman3.jpg"/>
+											            		</a>
+											            	</p>
+											            	
+											            	<h4>Visit Our Home Page</h4>
+											            	<p>
+											            		<a href="/welcome">
+											            			<img class="carimg2" src="../../assets/runfortheroses.jpg"/>
+											            		</a>
+											            	</p>
+											            	
+											            	<h4>View Our Inventory</h4>
+											            	<p><a href="/inventory"><img class="carimg2" src="../../assets/showroom2.jpg"/></a></p>
+											            	<br><br>
+											            </div>
+											            <script>
+											            function update3(select3id)
+									            		{
+									            			stringy1 = "trans" + globalstuff; // transidofcarchosen
+									            			stringy2 = "PRICE" + globalstuff;
+									            			stringy3 = "interior" + globalstuff; // interior+id
+									            			
+									            			document.getElementById("transmission").style.display = "none"; // hide transmission
+									            			var arrayofints = document.getElementById(select3id).getElementsByTagName("label"); // assign array to all labels in interior form
+
+									            			var arrayoftrans = document.getElementById("transmission").getElementsByTagName("label"); // assign array to all labels in trans form
+									            			for (i = 0; i < arrayoftrans.length; i++) //as long as there are labels in trans form
+									            			{
+									            				if (arrayoftrans[i].childNodes[0].checked) // if trans fields are checked
+									            				{
+									            					arrayoftrans[i].removeChild(arrayoftrans[i].getElementsByTagName("input")[0]); //remove checked bits
+									            					document.getElementById(stringy1).innerHTML = document.getElementById(stringy1).innerHTML + arrayoftrans[i].innerHTML;
+									            				}
+									            			}
+									            			for (i = 0; i < arrayofints.length; i++)
+									            			{
+									            				if (arrayofints[i].childNodes[0].checked)
+									            				{
+									            					arrayofints[i].removeChild(arrayofints[i].getElementsByTagName("input")[0]);
+									            					document.getElementById(stringy3).innerHTML = document.getElementById(stringy3).innerHTML + arrayofints[i].innerHTML;
+									            				}
+									            			}
+									            			document.getElementById(stringy1).style.display = "block";
+									            			document.getElementById(stringy3).style.display = "block";
+									            			document.getElementById("summary").style.display = "block";
+									            			document.getElementById(stringy2).style.display = "block";
+									            			document.getElementById("home").style.display = "block";
+									            			document.getElementById("choose").style.display = "none";
+									            			document.getElementById("transmission").style.display = "none";
+									            			document.getElementById("interior").style.display = "none";
+									            		}
+											            </script>
+										                <div id="price">
+											            	<form>
+											                	<label for="fader">Price Maximum</label>
+
+																<input type="range" min="10" max="75" value="75" id="fader" step="1" onclick="outputUpdate(value)">
+																<output for="fader" id="volume">$75,000</output>
+															</form>
+														</div>
+														<br><br>
+														<div id="clear"><a href="/build">Clear All</a></div>
+														
+														
+
+									            	</div>
+									            	<script>
+									            	{
+									            		function update2(select2id)
+									            		{
+									            			stringy1 = "colorchosen" + globalstuff;
+									            			document.getElementById("color").style.display = "none";
+									            			var arrayofcolors = document.getElementById(select2id).getElementsByTagName("label");
+									            			for (i = 0; i < arrayofcolors.length; i++)
+									            			{
+									            				if (arrayofcolors[i].childNodes[0].checked)
+									            				{
+									            					arrayofcolors[i].removeChild(arrayofcolors[i].getElementsByTagName("input")[0]);
+									            					document.getElementById(stringy1).innerHTML = document.getElementById(stringy1).innerHTML + arrayofcolors[i].innerHTML;
+									            				}
+									            			}
+									            			document.getElementById(stringy1).style.display = "block";
+									            			document.getElementById("engine").style.display = "block";
+									            			document.getElementById("color1").style.display = "none";
+									            			
+									            			document.getElementById("transmission").style.display = "block";
+									            			document.getElementById("interior").style.display = "block";
+									            		}
+									            	}
+									            	</script>
+													<!-- End -->
+												</header>
+
+													<!--This is the "view more" button that I don't need right now<ul class="buttons">
+														<li><a href="#" class="button small">View All</a></li>
+													</ul>-->
+												</footer>
+											</section>
+
+											<section><!-- Second sidebar sections -->
+												<header>
+													<!-- THIS IS ANOTHER SIDEBAR SECTION IN CASE OF EMERGENCY -->
+													<h3></h3>
+												</header>
+												     
+												</footer>
+											</section>
+										</div>
+
+								</div>
+								<div class="8u 12u(narrower) important(narrower)">
+									<!-- Content -->
+										<div class="content">
+											<section>
+												<!--<a href="#" class="image featured"><img src="assets/pic02.jpg" alt="" /></a>-->
+												<header>
+													<h3></h3>
+												</header>
+												<div class="results" id="info">
+													<%products = Hash.new%>
+													<%num1=0%>
+													<%num2=0%>
+													<% @pricebookentrys.each do |product|%>
+														<% different = product.F_All__c %>
+														<% products[product.Id] = product.UnitPrice %>
+														<div class="result" id="<%="#{product.Id}"%>" data-category="<%="#{different}"%>" >
+
+															<% if product.Picture__c != nil && product.F_All__c != "f" && different != nil%>
+																<%num1 += 1%>
+																	<span style="display:inline-block;">
+																		<p>
+																			<strong><%=product.Name%></strong><br />
+																			<div id="base">Base Price: $<span class="unitprice"><%=product.UnitPrice%></span></br></div>
+
+																			<%iddiv2 = "colorchosen"+product.Id%>
+																			<%iddiv3 = "trans"+product.Id%>
+																			<%iddiv4 = "PRICE"+product.Id%>
+																			<%iddiv5 = "interior"+product.Id%>
+																			<div id="<%="#{iddiv2}"%>" style="display:none; padding-bottom:40px;">Color: </div>
+																			<div id="<%="#{iddiv3}"%>" style="display:none;">Transmission:  </div>
+																		
+																			<div id="<%="#{iddiv5}"%>" style="display:none; padding-bottom:40px;">Interior: </div>
+																		
+																			<div id="<%="#{iddiv4}"%>" style="display:none; padding-bottom:40px;">Updated Price: $
+																				<span class="unitprice"><%=product.UnitPrice+2435%>0
+																				</span>
+																			</div>
+																		</p>
+																	</span>
+																<% u = product.Picture__c %>
+																<img src="<%="#{u}"%>" class="carimg"/>
+																<% selectvar = product.Id + "Select"%>
+																<input type="submit" class="special" value="Select" id="<%="#{selectvar}"%>" onclick="update(this)"></input>
+																<script>
+																{
+																	function update(selectid)
+																	{
+																		var results = document.getElementById("info").getElementsByTagName("div");
+																		for (i = 0; i < results.length; i++)
+																		{
+																			if (selectid.parentNode != results[i])
+																			{
+																				results[i].style.display = "none";
+																				selectid.style.display = "none";
+																			}
+																			else
+																			{
+																				globalstuff = results[i].id;
+																			}
+																		}
+																		document.getElementById("base").style.display = "none";
+																		document.getElementById("make").style.display = "none"; //checkboxes
+																		document.getElementById("model").style.display = "none"; //checkboxes
+																		document.getElementById("type").style.display = "none"; //checkboxes
+																		document.getElementById("price").style.display = "none"; //slider
+																		document.getElementById("clear").style.display = "none"; //clear all
+																		document.getElementById("titlestuff").style.display = "none"; // header title
+																		document.getElementById("end").style.display = "none"; // Disappearing
+																		<% @pricebookentrys.each do |product|%>
+																			for (i = 0; i < results.length; i++)
+																			{
+																				if (selectid.parentNode.id == "<%="#{product.Id}"%>")
+																				{
+																					if ("<%="#{product.Name}"%>".includes("Acura"))
+																						document.getElementById('ifAcura1').style.display = 'block';
+																					if ("<%="#{product.Name}"%>".includes("Honda"))
+																						document.getElementById('ifHonda1').style.display = 'block';
+																					if ("<%="#{product.Name}"%>".includes("Hyundai"))
+																						document.getElementById('ifHyundai1').style.display = 'block';
+																				} 
+																		    }
+																		<% end %>
+																		//document.getElementById("interior").style.display = "block";
+																		//document.getElementById("transmission").style.display = "block";
+																		document.getElementById("color1").style.display = "block";
+																		
+																		document.getElementById("body1").style.display = "none";
+																	}
+															    }
+																</script>
+																<div id="end"> <hr style="background:#B2B2B2; border:0; height:1px"/></div>
+															<% end %>
+															<%num2 += 1%>
+														</div>
+													<% end %>
+												</div>
+												<!--<div>Status: Certified Pre-Owned</div>
+											    			<div>Make: Cadillac</div>
+											    			<div>Model: ATS</div>
+											    			<div>Year: 2014</div>
+											    			<div>Features: Sweet Rims</div>
+														</div>
+														<img class="carimg" src="assets/2014-Cadillac-ATS-red" alt="img"/>
+											    		<p></p><p></p>
+													</div>-->
+												
+								            		<!--<div class="result" data-id="result1" data-category="check1 check4 check9 check13 check18">
+								            			<hr style="background:#B2B2B2; border:0; height:1px" />
+								            			<div style="display:inline-block;">
+															<div>Status: New</div>
+												    		<div>Make: Buick</div>
+												    		<div>Model: Regal</div>
+												    		<div>Year: 2015</div>
+												    		<div>Features: Four-Wheel Drive;</div>
+												    	</div>
+												    	<img class="carimg" src="assets/2015-Buick-Regal-black.jpg"/>
+								            			<p><p/><p></p>
+													</div>
+													
+													<div class="result" data-id="result2" data-category="check2 check4 check11 check13">
+														<hr style="background:#B2B2B2; border:0; height:1px" />
+														<div style="display:inline-block;">
+															<div>Status: Used</div>
+												    		<div>Make: Chevrolet</div>
+												    		<div>Model: Cruze</div>
+												    		<div>Year: 2012</div>
+												    		<div>Features: None</div>
+														</div>
+														<img class="carimg" src="assets/2012-Chevrolet-Cruze-black.jpg" alt="img"/>
+												    	<p></p><p></p>
+													</div>
+													<div class="result" data-id="result2" data-category="check3 check5 check10 check14 check19">
+														<hr style="background:#B2B2B2; border:0; height:1px" />
+														<div style="display:inline-block;">
+															<div>Status: Certified Pre-Owned</div>
+												    		<div>Make: Cadillac</div>
+												    		<div>Model: SRX</div>
+												    		<div>Year: 2015</div>
+												    		<div>Features: Sunroof</div>
+														</div>
+														<img class="carimg" src="assets/2015-Cadillac-SRX-red.jpg" alt="img"/>
+												    	<p></p><p></p>
+													</div>
+													
+													<div class="result" data-id="result2" data-category="check1 check5 check9 check13 check19">
+														<hr style="background:#B2B2B2; border:0; height:1px" />
+														<div style="display:inline-block;">
+															<div>Status: New</div>
+												    		<div>Make: Buick</div>
+												    		<div>Model: Enclave</div>
+												    		<div>Year: 2015</div>
+												    		<div>Features: Sunroof</div>
+														</div>
+														<img class="carimg" src="assets/2015-Buick-Enclave-black.jpg" alt="img"/>
+												    	<p></p><p></p>
+													</div>
+													
+													<div class="result" data-id="result3" data-category="check1 check4 check11 check16 check19 check18">
+														<hr style="background:#B2B2B2; border:0; height:1px" />
+								            			<div style="display:inline-block;">
+															<div>Status: New</div>
+												    		<div>Make: Chevrolet</div>
+												    		<div>Model: Camaro</div>
+												    		<div>Year: 2015</div>
+												    		<div>Features: Four-Wheel Drive; Sunroof</div>
+												    	</div>
+												    	<img class="carimg" src="assets/2015-Chevrolet-Camaro-white.jpg"/>
+								            			<br />
+													</div>
+													
+													<div class="result" data-id="result2" data-category="check1 check7 check12 check14 check18">
+														<hr style="background:#B2B2B2; border:0; height:1px" />
+														<div style="display:inline-block;">
+															<div>Status: New</div>
+												    		<div>Make: GMC</div>
+												    		<div>Model: Sierra</div>
+												    		<div>Year: 2015</div>
+												    		<div>Features: Four-Wheel Drive</div>
+														</div>
+														<img class="carimg" src="assets/2015-GMC-Sierra-blue.jpg" alt="img"/>
+												    	<p></p><p></p>
+													</div>
+													<div class="result" data-id="result2" data-category="check3 check5 check10 check14 check19">
+														<hr style="background:#B2B2B2; border:0; height:1px" />
+														<div style="display:inline-block;">
+															<div>Status: Used</div>
+												    		<div>Make: Cadillac</div>
+												    		<div>Model: SRX</div>
+												    		<div>Year: 2015</div>
+												    		<div>Features: Sunroof</div>
+														</div>
+														<img class="carimg" src="assets/2015-Cadillac-SRX-red" alt="img"/>
+												    	<p></p><p></p>
+													</div>
+													<div class="result" data-id="result2" data-category="check1 check5 check12 check17 check18 check20">
+														<hr style="background:#B2B2B2; border:0; height:1px" />
+														<div style="display:inline-block;">
+															<div>Status: New</div>
+												    		<div>Make: GMC</div>
+												    		<div>Model: Yukon</div>
+												    		<div>Year: 2015</div>
+												    		<div>Features: Sweet Rims, Four-Wheel Drive</div>
+														</div>
+														<img class="carimg" src="assets/2015-GMC-Yukon-silver.jpg" alt="img"/>
+												    	<p></p><p></p>
+													</div>
+													<hr style="background:#B2B2B2; border:0; height:1px" />
+								                </div> -->
+											</section>
+										</div>
+
+								</div>
+							</div>
+						</section>
+
+					<!-- Two -->
+						<!--<section class="wrapper style1 container special">
+							<div class="row">
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<header>
+											<h3>This is Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">View All Inventory</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<header>
+											<h3>Also Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<header>
+											<h3>Probably Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+										<footer>
+											<ul class="buttons">
+												<li><a href="#" class="button small">Learn More</a></li>
+											</ul>
+										</footer>
+									</section>
+
+								</div>
+							</div>
+						</section>-->
+
+				</article>
+
+			<!-- Footer -->
+				<footer id="footer">
+
+					<ul class="icons">
+						<li><a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
+						<li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+					</ul>
+
+					<ul class="copyright">
+						<li>&copy; Triple Crown Car Dealership</li><li>Design: <a href="http://html5up.net">Erin Combs</a></li>
+					</ul>
+
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			
+			<!-- Define the checkboxes dependencies
+				//var dependencies = {
+				    //"#check12": ["#check17", "#check18", "#check19", "#check20", "#check21", "check22", "#check23", "#check25", "#check30"], 
+				    //"#check13": ["#check15", "#check16", "#check17", "#check24", "#check26","#check27", "#check28", "#check29"], 
+				    //"#check14": ["#check31", "#check32", "#check33","#check34","#check35", "#check36", "#check37", "#check38", "#check39", "#check40", "#check41", "#check42", "#check43", "#check44", "#check45", "#check46", "#check47", "#check48", "#check49", "#check50", "#check51", "#check52", "#check53", "#check54", "#check55", "#check56", "#check57", "#check58", "#check59", "#check60", "#check61", "#check62", "#check63", "#check64", "#check65", "#check66", "#check67", "#check68", "#check69", "#check70", "#check71", "#check72", "#check73", "#check74", "#check75"] 
+				//};-->
+
+
+
+				
+
+				
+				
+			<script src="../../assets/jquery.min.js"></script>
+			<script src="../../assets/jquery.dropotron.min.js"></script>
+			<script src="../../assets/jquery.scrolly.min.js"></script>
+			<script src="../../assets/jquery.scrollgress.min.js"></script>
+			<script src="../../assets/skel.min.js"></script>
+			<script src="../../assets/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/main.js"></script>
+
+	</body>
+</html>

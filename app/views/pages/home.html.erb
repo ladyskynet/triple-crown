@@ -1,0 +1,344 @@
+<% provide(:title, "Home") %>
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<style>
+	.servicewrapper {
+    max-width:520px;
+    max-height:460px;
+    position:relative;
+}
+#serviceh3 {
+	position: absolute; 
+  	top: 90px; 
+  	left: 0; 
+  	width: 100%;
+}
+
+.ArtistPic {
+	opacity: 0.3;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+    max-height: 100%;
+    max-width:100%;
+    width: auto;
+    
+}
+.ArtistPic:hover {
+	opacity: .650;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+	@import url("https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
+</style>
+	<head>
+		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/javascripts/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body class="left-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					</span><h1 id="logo"><a href="/">Triple Crown <span class="icon fa-trophy"><span> Car Dealership</span></a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="/welcome">Welcome</a></li>
+							<li class="submenu">
+								<a href="#">Inventory</a>
+								<ul>
+									<li><a href="/inventory">Current Stock</a></li>
+									<li><a href="/build">Design Your Own</a></li>
+									<li><a href="/lineup">View the Lineup</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="/services">Services</a>
+								<ul>
+									<li><a href="/schedule-test">Test Drives</a></li>
+									<li><a href="/schedule-sales">Sales Appointments</a></li>
+									<li><a href="/services">View All</a></li>
+								</ul>
+							</li>
+							<li><a href="/contact-us">Contact Us</a>
+							<% if logged_in? %>
+							<li class="submenu">
+                  				<a href="#">My Account</a>
+                  				<ul>
+                   	 				<li><a href="/users">All Users</a></li>
+					                <li><%= link_to "Profile", current_user %></li>
+					                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+					                <li class="divider"></li>
+					                <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+					            </ul>
+					        </li>
+					        <% else %>
+								<li><a href="/sign-up" class="button special">Sign Up</a></li>
+								<li><a href="/login" class="button special">Log In</a></li>
+							<% end %>
+						</ul>
+					</nav>
+				</header>
+			<!-- Banner -->
+			<!-- start! -->
+			<section id="banner">
+
+					<!--
+						".inner" is set up as an inline-block so it automatically expands
+						in both directions to fit whatever's inside it. This means it won't
+						automatically wrap lines, so be sure to use line breaks where
+						appropriate (<br />).
+					-->
+					<div class="inner">
+
+						<header>
+							<h2>Triple<span class="icon fa-trophy">Crown <br />
+								Car Dealership
+							</h2>
+						</header>
+						<p>We put the <strong>horse</strong>
+						
+						in <strong>horsepower.</strong></p>
+						
+						<footer>
+							<ul class="buttons vertical">
+								<li><a href="/inventory" class="button fit scrolly">Search the Inventory</a></li>
+								<li><a href="/build" class="button fit scrolly">Design Your Own</a></li>
+								<li><a href="/services" class="button fit scrolly">View Our Other Services</a></li>
+							</ul>
+						</footer>
+
+					</div>
+
+				</section>
+			<!-- END -->
+				<!--start<section id="banner">
+
+					
+						comments".inner" is set up as an inline-block so it automatically expands
+						in both directions to fit whatever's inside it. This means it won't
+						automatically wrap lines, so be sure to use line breaks where
+						appropriate (<br />).somments
+					
+					<div class="inner">
+
+						<header>
+							<h2>Triple Crown <br />Car Dealership</h2><br />
+						</header>
+						<p>This is a<span class="icon fa-trophy"></span> dealership</p>
+						<br />
+						<br />
+						commented<img src="assets/another-trophy.png">commented
+						<footer>
+							<ul class="buttons vertical">
+									<li><a href="/services" class="button fit scrolly">Search the inventory</a></li>
+									<li><a href="/services" class="button fit scrolly">View our other services</a></li>
+							</ul>
+						</footer>
+
+					</div>
+
+				</section>-->
+
+			<!-- Main -->
+				<article id="main">
+
+					<header class="special container">
+						<span class="icon fa-bar-chart-o"></span>
+						<h2>Currently in our <strong>fifteenth</strong> year of business,
+						<br />
+						Triple Crown wants to be your next dealership.</h2>
+						<!--<p>Turns out <strong>Twenty</strong> was the best I could come up with. Anyway, lame name aside,
+						<br />
+						it's minimally designed, fully responsive, built on HTML5/CSS3/<strong>skel</strong>,
+						and, like all my stuff,
+						<br />
+						released for free under the <a href="http://html5up.net/license">Creative Commons Attribution 3.0</a> license. Have fun!</p>-->
+					</header>
+
+					<!-- One -->
+						<section class="wrapper style2 container special-alt">
+							<div class="row 50%">
+								<div class="8u 12u(narrower)">
+
+									<header>
+										<h2>Celebrate your American freedom from interest by purcahsing a brand-new <strong>Honda Accord </strong> and receive 0% APR for <strong>72 months!</strong></h2>
+									</header>
+									<p>Only select vehicles can apply.</p>
+									<footer>
+										<ul class="buttons">
+											<li><a href="#" class="button">Find Out More</a></li>
+										</ul>
+									</footer>
+
+								</div>
+								<div class="4u 12u(narrower) important(narrower)">
+
+									<ul class="featured-icons">
+										<li><span class="icon fa-arrow-down"><span class="label">Feature 1</span></span></li>
+										<li><span class="icon fa-arrow-down"><span class="label">Feature 2</span></span></li>
+										<li><span class="icon fa-flag"><span class="label">Feature 3</span></span></li>
+										<li><span class="icon fa-car"><span class="label">Feature 4</span></span></li>
+										<li><span class="icon fa-arrow-up"><span class="label">Feature 5</span></span></li>
+										<li><span class="icon fa-arrow-up"><span class="label">Feature 6</span></span></li>
+									</ul>
+
+								</div>
+							</div>
+						</section>
+
+					<!-- Two -->
+						<section class="wrapper style1 container special">
+							<!--<div class="row">
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<span class="icon featured fa-check"></span>
+										<header>
+											<h3>This is Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									</section>
+
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<span class="icon featured fa-check"></span>
+										<header>
+											<h3>Also Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									</section>
+
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<span class="icon featured fa-check"></span>
+										<header>
+											<h3>Probably Something</h3>
+										</header>
+										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									</section>
+
+								</div>
+							</div>-->
+						</section>
+
+					<!-- Three -->
+						<section class="wrapper style1 container special">
+							<header class="major">
+								<h1>Next look at our <strong>new lineup</strong></h1>
+							</header>
+							<div class="row">
+								<div class="4u 12u(narrower)">
+									<section>
+										<div class="servicewrapper">
+											<a href="/honda" class="image featured"><img class="ArtistPic" src="assets/2015-Honda-Accord-home.jpg"/></a>
+											<header>
+												<h2>Honda</h2>
+												<p>The Power of Dreams.</p>
+											</header>
+										</div>
+									</section>
+								</div>
+								<!--<div class="4u 12u(narrower)">
+									<section>
+										<div class="servicewrapper">
+    										<a href="/honda"> <img class="ArtistPic" src="assets/2015-Honda-Accord-home.jpg"></a>
+											<header>
+												<h2>Honda</h2>
+												<p>The Power of Dreams</p>
+											</header>
+										</div>
+									</section>
+								</div>-->
+								<div class="4u 12u(narrower)">
+									<section>
+										<div class="servicewrapper">
+											<a href="/acura" class="image featured"><img class="ArtistPic" src="assets/2015-Acura-TLX-home.jpg"></a>
+											<header>
+												<h2>Acura</h2>
+												<p>Advance.</p>
+											</header>
+										</div>
+									</section>
+								</div>
+								<div class="4u 12u(narrower)">
+
+									<section>
+										<div class="servicewrapper">
+											<a href="/hyundai" class="image featured"><img class="ArtistPic" src="assets/2015-Hyundai-Genesis-home.jpg"/></a>
+											<header>
+												<h2>Hyundai</h2>
+												<p>New Thinking. New Possibilities.</p>
+											</header>
+										</div>
+									</section>
+								</div>
+							</div>
+							<!--<footer class="major">
+								<ul class="buttons">
+									<li><a href="" class="button">See More</a></li>
+								</ul>
+							</footer>-->
+
+						</section>
+
+				</article>
+
+			<!-- CTA -->
+				<!--<section id="cta">
+
+					<header>
+						<h2>Ready to do <strong>something</strong>?</h2>
+						<p>Proin a ullamcorper elit, et sagittis turpis integer ut fermentum.</p>
+					</header>
+					<footer>
+						<ul class="buttons">
+							<li><a href="#" class="button special">Take My Money</a></li>
+							<li><a href="#" class="button">LOL Wut</a></li>
+						</ul>
+					</footer>
+
+				</section>-->
+
+			<!-- Footer -->
+				<footer id="footer">
+
+					<ul class="icons">
+						<li><a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
+						<li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+					</ul>
+
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/jquery.min.js"></script>
+			<script src="assets/jquery.dropotron.min.js"></script>
+			<script src="assets/jquery.scrolly.min.js"></script>
+			<script src="assets/jquery.scrollgress.min.js"></script>
+			<script src="assets/skel.min.js"></script>
+			<script src="assets/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/javascripts/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/main.js"></script>
+
+	</body>
+</html>
